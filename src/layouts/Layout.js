@@ -1,17 +1,14 @@
 // Libraries
 import React from 'react'
 
-// Components
-// import Header from './Header'
-// import LeftSideBar from './LeftSideBar'
-// import RightSideBar from './RightSideBar'
-
-
-
-
 const Layout = () => {
     return (
         <>
+
+            <link href="../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+            <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+            <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
             <div id="layout-wrapper">
 
                 <header id="page-topbar">
@@ -307,7 +304,7 @@ const Layout = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div data-simplebar style="max-height: 230px;">
+                                    <div data-simplebar style={{ maxHeight: "230px" }}>
                                         <a href="" class="text-reset notification-item">
                                             <div class="media">
                                                 <div class="avatar-xs mr-3">
@@ -692,8 +689,6 @@ const Layout = () => {
 
             </div>
 
-
-
             <div class="right-bar">
                 <div data-simplebar class="h-100">
                     <div class="rightbar-title px-3 py-4">
@@ -739,6 +734,14 @@ const Layout = () => {
             </div>
 
             <div class="rightbar-overlay"></div>
+
+            <script src="../assets/libs/jquery/jquery.min.js"></script>
+            <script src="../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="../assets/libs/metismenu/metisMenu.min.js"></script>
+            <script src="../assets/libs/simplebar/simplebar.min.js"></script>
+            <script src="../assets/libs/node-waves/waves.min.js"></script>
+
+            <script src="../assets/js/app.js"></script>
         </>
     )
 }
