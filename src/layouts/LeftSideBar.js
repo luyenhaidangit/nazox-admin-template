@@ -6,33 +6,6 @@ import "../assets/css/custom.css"
 
 const LeftSideBar = () => {
     const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-
-    //         $("#vertical-menu-btn").on("click", (e) => {
-    //             e.preventDefault();
-    //             $("body").toggleClass("sidebar-enable");
-    //             if ($(window).width() >= 992) {
-    //                 $("body").toggleClass("vertical-collpsed");
-    //             } else {
-    //                 $("body").removeClass("vertical-collpsed");
-    //             }
-    //         });
-    //         $("body,html").click(function (e) {
-    //             var t = $("#vertical-menu-btn");
-    //             if (t.is(e.target) || t.has(e.target).length !== 0 || e.target.closest("div.vertical-menu")) {
-    //                 return;
-    //             }
-    //             $("body").removeClass("sidebar-enable");
-    //         });
-
-    //         const currentUrl = window.location.href.split(/[?#]/)[0];
-    //         $("#sidebar-menu a[link='" + currentUrl + "']").addClass("active").parent().addClass("active").parent().addClass("active").parent().addClass("active").parent().addClass("active").parent().addClass("active");
-    //         $(".navbar-nav a[link='" + currentUrl + "']").addClass("active").parent().addClass("active").parent().addClass("active").parent().addClass("active").parent().addClass("active").parent().addClass("active");
-    //     }, 1000);
-    // }, []);
-
     const location = useLocation();
 
     useEffect(() => {
@@ -51,9 +24,6 @@ const LeftSideBar = () => {
         $("#sidebar-menu a[link='" + currentUrl + "']").addClass("active").parent().addClass("mm-active").parent().addClass("mm-show").parent().addClass("mm-active").children('a').addClass('mm-active');
     }, [location]);
 
-
-
-
     return (
         <>
             <div class="vertical-menu">
@@ -69,14 +39,14 @@ const LeftSideBar = () => {
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <a class="has-arrow waves-effect cursor-pointer">
                                     <i class="ri-store-2-line"></i>
                                     <span>Danh mục</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li className='pointer cursor-pointer' onClick={() => navigate("/product-category")}><a link="/product-category">Loại sản phẩm</a></li>
-                                    <li className='cursor-pointer' onClick={() => navigate("/product-category")}><a link="/brand">Nhãn hiệu</a></li>
-                                    <li className='cursor-pointer' onClick={() => navigate("/product-category")}><a link="/product">Sản phẩm</a></li>
+                                    <li className='cursor-pointer' onClick={() => navigate("/brand")}><a link="/brand">Nhãn hiệu</a></li>
+                                    <li className='cursor-pointer' onClick={() => navigate("/product")}><a link="/product">Sản phẩm</a></li>
                                 </ul>
                             </li>
 
