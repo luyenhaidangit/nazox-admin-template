@@ -16,6 +16,10 @@ import makeAnimated from 'react-select/animated';
 
 const ProductCategoy = () => {
     const [productCategories, setProductCategories] = useState([]);
+    const [pageIndex, setPageIndex] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const [totalPages, setTotalPages] = useState(0);
+
     const [isClearable, setIsClearable] = useState(true);
     const [isSearchable, setIsSearchable] = useState(true);
     const [isDisabled, setIsDisabled] = useState(false);
@@ -30,14 +34,6 @@ const ProductCategoy = () => {
         { value: 'green', label: 'Green' },
         { value: 'blue', label: 'Blue' },
     ];
-
-    // const customStyles = {
-    //     control: base => ({
-    //         ...base,
-    //         height: 35,
-    //         minHeight: 35,
-    //     })
-    // };
 
     const ValueContainer = ({ children, getValue, ...props }) => {
         let maxToShow = 2;
@@ -76,12 +72,17 @@ const ProductCategoy = () => {
 
 
     useEffect(() => {
-        fetchProductCateogories();
+        const request = {
+            pageIndex,
+            pageSize
+        }
+        fetchProductCateogories(request);
     }, []);
 
-    const fetchProductCateogories = async () => {
-        let res = await GetProductCategoryManage();
+    const fetchProductCateogories = async (request) => {
+        let res = await GetProductCategoryManage(request);
         setProductCategories(res.items);
+        setTotalPages(res.totalPages);
     }
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -101,9 +102,6 @@ const ProductCategoy = () => {
             setSortOrder('asc');
         }
     };
-
-
-
 
     return (
         <>
@@ -127,7 +125,7 @@ const ProductCategoy = () => {
                 <div className="col-12">
                     <div className="card">
                         <div className="card-body">
-                            <h3 className="card-title">Quản lý loại sản phẩm</h3>
+                            {/* <h3 className="card-title">Quản lý loại sản phẩm</h3> */}
                             <div className='group-btn'>
                                 <button type="button" className="btn btn-success waves-effect waves-light mt-2 mb-3 mr-2">Thêm mới</button>
                             </div>
@@ -206,7 +204,17 @@ const ProductCategoy = () => {
                                                 <i class="mdi mdi-chevron-left"></i>
                                             </a>
                                         </li>
-                                        <li class="paginate_button page-item active">
+                                        {[...Array(totalPages)].map((_, i) => (
+                                            // <button key={i} onClick={() => handlePageChange(i + 1)}>
+                                            //     {i + 1}
+                                            // </button>
+                                            <li className={`paginate_button page-item ${i + 1 === pageIndex ? 'active' : ''}`}>
+                                                <a data-dt-idx="1" tabindex="0" class="page-link">
+                                                    {i + 1}
+                                                </a>
+                                            </li>
+                                        ))}
+                                        {/* <li class="paginate_button page-item active">
                                             <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">
                                                 1
                                             </a>
@@ -215,7 +223,7 @@ const ProductCategoy = () => {
                                             <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">
                                                 2
                                             </a>
-                                        </li>
+                                        </li> */}
                                         <li class="paginate_button page-item next" id="DataTables_Table_0_next">
                                             <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">
                                                 <i class="mdi mdi-chevron-right"></i>
