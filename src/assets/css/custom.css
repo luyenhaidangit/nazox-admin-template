@@ -1,3 +1,64 @@
 .cursor-pointer{
     cursor: pointer;
 }
+
+.cursor-alias {
+    cursor: alias;
+}
+
+.custom-input {
+    display: block;
+    width: 100%;
+    padding: 7px 12px 8px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out;
+}
+
+.custom-input:focus {
+    border-color: #2684FF;
+    outline: 0;
+    box-shadow: 0 0 0 1px #2684FF;
+    padding: 7px 12px;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    border-bottom: unset !important;
+}
+
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:before {
+    right: 0.5rem !important;
+    content: "\F0360" !important;
+    font-family: "Material Design Icons" !important;
+    font-size: 1rem !important;
+    top: 13px !important;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc_disabled:after {
+    right: 0.5em !important;
+    content: "\F035D" !important;
+    font-family: "Material Design Icons" !important;
+    top: 21px !important;
+    font-size: 1rem !important;
+}
+
+.table td,
+.table th {
+    padding: 0.75rem !important;
+    vertical-align: top !important;
+}
+
