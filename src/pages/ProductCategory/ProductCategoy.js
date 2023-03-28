@@ -19,57 +19,19 @@ const ProductCategoy = () => {
     const [pageIndex, setPageIndex] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [totalPages, setTotalPages] = useState(0);
-
-    const [isClearable, setIsClearable] = useState(true);
-    const [isSearchable, setIsSearchable] = useState(true);
-    const [isDisabled, setIsDisabled] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isRtl, setIsRtl] = useState(false);
     const [sortOrder, setSortOrder] = useState(null);
+    const [sortState, setSortState] = useState({ sortBy: null, orderBy: null });
 
-    const animatedComponents = makeAnimated();
-
-    const colourOptions = [
-        { value: 'red', label: 'Red' },
-        { value: 'green', label: 'Green' },
-        { value: 'blue', label: 'Blue' },
-    ];
-
-    const ValueContainer = ({ children, getValue, ...props }) => {
-        let maxToShow = 2;
-        var length = getValue().length;
-        let displayChips = React.Children.toArray(children).slice(0, maxToShow);
-        let shouldBadgeShow = length > maxToShow;
-        let displayLength = length - maxToShow;
-
-        return (
-            <components.ValueContainer {...props}>
-                {!props.selectProps.inputValue && displayChips}
-                <div className="root">
-                    {shouldBadgeShow &&
-                        `+ ${displayLength} ${length != 1 ? "" : ""} lựa chọn`}
-                </div>
-            </components.ValueContainer>
-        );
+    const handleSort = (sortBy) => {
+        if (sortState.sortBy === sortBy) {
+            setSortState({
+                ...sortState,
+                orderBy: sortState.orderBy === 'asc' ? 'desc' : 'asc'
+            });
+        } else {
+            setSortState({ sortBy, orderBy: 'asc' });
+        }
     };
-
-    const NoOptionsMessage = (props) => {
-        return (
-            <components.NoOptionsMessage {...props}>
-                {/* Your custom message here */}
-                Không có tùy chọn
-            </components.NoOptionsMessage>
-        );
-    };
-
-    const Menu = () => null;
-
-    const [inputValue, setInputValue] = useState('');
-
-    const handleInputChange = (newValue) => {
-        setInputValue(newValue);
-    };
-
 
     useEffect(() => {
         const request = {
@@ -79,29 +41,35 @@ const ProductCategoy = () => {
         fetchProductCateogories(request);
     }, []);
 
+    const changePageIndex = (index) => {
+        setPageIndex(index);
+    }
+
+    useEffect(() => {
+        const request = {
+            pageIndex: pageIndex,
+            pageSize: pageSize,
+        }
+        fetchProductCateogories(request);
+    }, [pageIndex]);
+
+    useEffect(() => {
+        const request = {
+            pageIndex: pageIndex,
+            pageSize: pageSize,
+            sortBy: sortState.sortBy,
+            orderBy: sortState.orderBy
+        };
+        console.log(request)
+        // Call your API here with the updated request object
+        fetchProductCateogories(request);
+    }, [sortState]);
+
     const fetchProductCateogories = async (request) => {
         let res = await GetProductCategoryManage(request);
         setProductCategories(res.items);
         setTotalPages(res.totalPages);
     }
-
-    const [selectedOption, setSelectedOption] = useState(null);
-
-    const handleChange = (newValue) => {
-        setSelectedOption(newValue);
-    };
-
-    const isValidNewOption = (inputValue) => {
-        return inputValue.length > 0;
-    };
-
-    const handleSort = () => {
-        if (sortOrder === 'asc') {
-            setSortOrder('desc');
-        } else {
-            setSortOrder('asc');
-        }
-    };
 
     return (
         <>
@@ -143,15 +111,15 @@ const ProductCategoy = () => {
                                 <table id="datatable" class="dataTable table table-bordered dt-responsive nowrap" style={{ borderCollapse: 'collapse', borderSpacing: '0', width: '100%', margin: "0 12px" }}>
                                     <thead>
                                         <tr>
-                                            <th className='d-flex align-items-center sorting_asc' onClick={handleSort}>
+                                            <th className='d-flex align-items-center sorting_asc' onClick={() => handleSort('id')}>
                                                 #
                                             </th>
-                                            <th className='sorting'>
+                                            <th className='sorting' onClick={() => handleSort('name')}>
                                                 Tên loại sản phẩm
                                             </th>
                                             <th>Ảnh đại diện</th>
-                                            <th className='sorting'>Độ ưu tiên</th>
-                                            <th className='sorting'>Trạng thái</th>
+                                            <th className='sorting' onClick={() => handleSort('displayOrder')}>Độ ưu tiên</th>
+                                            <th className='sorting' onClick={() => handleSort('published')}>Trạng thái</th>
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
@@ -161,7 +129,7 @@ const ProductCategoy = () => {
                                             productCategories && productCategories.map((item, index) => {
                                                 return (
                                                     <tr>
-                                                        <td>{index + 1}</td>
+                                                        <td>{item.id}</td>
                                                         <td>{item.name}</td>
                                                         <td className='d-flex justify-content-center'>
                                                             {
@@ -205,25 +173,12 @@ const ProductCategoy = () => {
                                             </a>
                                         </li>
                                         {[...Array(totalPages)].map((_, i) => (
-                                            // <button key={i} onClick={() => handlePageChange(i + 1)}>
-                                            //     {i + 1}
-                                            // </button>
-                                            <li className={`paginate_button page-item ${i + 1 === pageIndex ? 'active' : ''}`}>
+                                            <li onClick={() => setPageIndex(i + 1)} className={`paginate_button page-item cursor-pointer ${i + 1 === pageIndex ? 'active' : ''}`}>
                                                 <a data-dt-idx="1" tabindex="0" class="page-link">
                                                     {i + 1}
                                                 </a>
                                             </li>
                                         ))}
-                                        {/* <li class="paginate_button page-item active">
-                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">
-                                                1
-                                            </a>
-                                        </li>
-                                        <li class="paginate_button page-item ">
-                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">
-                                                2
-                                            </a>
-                                        </li> */}
                                         <li class="paginate_button page-item next" id="DataTables_Table_0_next">
                                             <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">
                                                 <i class="mdi mdi-chevron-right"></i>
