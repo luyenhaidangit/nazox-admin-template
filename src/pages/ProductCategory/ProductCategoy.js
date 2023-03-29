@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { GetProductCategoryManage } from '../../apis/productCategoryApiService';
+import { GetProductCategoryManage, DeleteProductCategoryMulti } from '../../apis/productCategoryApiService';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import "../../assets/libs/datatables.net/css/jquery.dataTables.css"
@@ -31,6 +31,10 @@ const ProductCategoy = () => {
         setProductCategories(res.items);
         setTotalPages(res.totalPages);
     }
+
+    // const deleteProductCateogoriesMulti = async (request) => {
+    //     await DeleteProductCategoryMulti(request);
+    // }
 
     useEffect(() => {
         const request = {
@@ -94,10 +98,10 @@ const ProductCategoy = () => {
         selectAllCheckboxRef.current.indeterminate = selectedIds.some(id => currentPageIds.includes(id));
     };
 
-    const submitDeleteMulti = () => {
-        const MySwal = withReactContent(Swal)
+    const submitDeleteMulti = async () => {
+        const MySwal = withReactContent(Swal);
 
-        MySwal.fire({
+        const result = await MySwal.fire({
             title: `Bạn có chắc muốn xóa ${selectedRecords.length} bản ghi?`,
             text: "Bạn sẽ không thể khôi phục dữ liệu sau khi xóa!",
             icon: 'warning',
@@ -106,18 +110,37 @@ const ProductCategoy = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Xác nhận',
             cancelButtonText: 'Bỏ qua'
-        }).then((result) => {
-            // Api delete multi
+        });
 
-            if (result.isConfirmed) {
+        if (result.isConfirmed) {
+            try {
+                // Gọi hàm deleteProductCateogoriesMulti và chờ kết quả trả về
+                DeleteProductCategoryMulti(selectedRecords).then(function (response) {
+                    // console.log(response)
+                    // toast.success("Thêm thông tin thành công");
+                    // handleClose();
+                    // props.fetchUsersWithPanigate(1);
+                    // props.setCurrentPage(1);
+                    const request = {
+                        pageIndex,
+                        pageSize
+                    }
+                    fetchProductCateogories(request);
+                }).catch(function (error) {
+
+                });
+
                 Swal.fire(
                     'Đã xóa!',
                     'Dữ liệu đã xóa khỏi hệ thống!.',
                     'success'
-                )
+                );
+            } catch (error) {
+                // Xử lý lỗi ở đây
+                console.error(error);
             }
-        })
-    }
+        }
+    };
 
     return (
         <>
