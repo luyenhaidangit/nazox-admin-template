@@ -32,10 +32,6 @@ const ProductCategoy = () => {
         setTotalPages(res.totalPages);
     }
 
-    // const deleteProductCateogoriesMulti = async (request) => {
-    //     await DeleteProductCategoryMulti(request);
-    // }
-
     useEffect(() => {
         const request = {
             pageIndex: pageIndex,
@@ -73,7 +69,7 @@ const ProductCategoy = () => {
         if (isChecked) {
             selectedIds = [...selectedRecords, ...productCategories.map(record => record.id)];
             selectedIds = [...new Set(selectedIds)];
-            selectAllCheckboxRef.current.indeterminate = false;
+            // selectAllCheckboxRef.current.indeterminate = false;
         } else {
             const currentPageIds = productCategories.map(record => record.id);
             selectedIds = selectedRecords.filter(id => !currentPageIds.includes(id));
@@ -94,8 +90,8 @@ const ProductCategoy = () => {
         }
         setSelectedRecords(selectedIds);
 
-        const currentPageIds = productCategories.map(record => record.id);
-        selectAllCheckboxRef.current.indeterminate = selectedIds.some(id => currentPageIds.includes(id));
+        // const currentPageIds = productCategories.map(record => record.id);
+        // selectAllCheckboxRef.current.indeterminate = selectedIds.some(id => currentPageIds.includes(id));
     };
 
     const submitDeleteMulti = async () => {
