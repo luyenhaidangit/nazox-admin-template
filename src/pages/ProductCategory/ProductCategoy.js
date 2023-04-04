@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { GetProductCategoryManage, DeleteProductCategoryMulti } from '../../apis/productCategoryApiService';
+import { GetProductCategoryManage, DeleteProductCategoryMulti, DeleteProductCategoryManage } from '../../apis/productCategoryApiService';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import "../../assets/libs/datatables.net/css/jquery.dataTables.css"
@@ -7,6 +7,7 @@ import "../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import "../../assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css"
 import "../../assets/libs/datatables.net-select-bs4/css/select.bootstrap4.min.css"
 import "../../assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+import { useNavigate } from 'react-router-dom';
 
 const ProductCategoy = () => {
     const [productCategories, setProductCategories] = useState([]);
@@ -16,6 +17,7 @@ const ProductCategoy = () => {
     const [sortState, setSortState] = useState({ sortBy: null, orderBy: null });
     const [selectedRecords, setSelectedRecords] = useState([]);
     const selectAllCheckboxRef = useRef();
+    const navigate = useNavigate();
 
     // Handle Page
     useEffect(() => {
@@ -28,8 +30,12 @@ const ProductCategoy = () => {
 
     const fetchProductCateogories = async (request) => {
         let res = await GetProductCategoryManage(request);
-        setProductCategories(res.items);
-        setTotalPages(res.totalPages);
+        // setProductCategories(res.items);
+        // setTotalPages(res.totalPages);
+
+        // Laravel
+        setProductCategories(res);
+        // setTotalPages(res.totalPages);
     }
 
     useEffect(() => {
@@ -138,6 +144,55 @@ const ProductCategoy = () => {
         }
     };
 
+    const handleDelete = async (item) => {
+        const MySwal = withReactContent(Swal);
+
+        const result = await MySwal.fire({
+            title: `Bạn có chắc muốn xóa ${selectedRecords.length} bản ghi?`,
+            text: "Bạn sẽ không thể khôi phục dữ liệu sau khi xóa!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xác nhận',
+            cancelButtonText: 'Bỏ qua'
+        });
+
+        if (result.isConfirmed) {
+            try {
+                // Gọi hàm deleteProductCateogoriesMulti và chờ kết quả trả về
+                DeleteProductCategoryManage(item?.id).then(function (response) {
+                    // console.log(response)
+                    // toast.success("Thêm thông tin thành công");
+                    // handleClose();
+                    // props.fetchUsersWithPanigate(1);
+                    // props.setCurrentPage(1);
+                    const request = {
+                        pageIndex,
+                        pageSize
+                    }
+                    fetchProductCateogories(request);
+                    console.log("haha")
+
+                }).catch(function (error) {
+
+                });
+
+                Swal.fire(
+                    'Đã xóa!',
+                    'Dữ liệu đã xóa khỏi hệ thống!.',
+                    'success'
+                );
+            } catch (error) {
+                // Xử lý lỗi ở đây
+                console.error(error);
+            }
+        }
+
+        // const res = DeleteProductCategoryManage(item?.id);
+        // console.log(item?.id)
+    }
+
     return (
         <>
             <div className="row">
@@ -162,7 +217,7 @@ const ProductCategoy = () => {
                     <div className="card">
                         <div className="card-body">
                             <div className='group-btn'>
-                                <button type="button" className="btn btn-success waves-effect waves-light mt-2 mb-3 mr-2">Thêm mới</button>
+                                <button onClick={() => navigate("/product-category/create")} type="button" className="btn btn-success waves-effect waves-light mt-2 mb-3 mr-2">Thêm mới</button>
                                 {
                                     selectedRecords && selectedRecords.length > 0 &&
                                     <button onClick={() => submitDeleteMulti()} type="button" className="btn btn-danger waves-effect waves-light mt-2 mb-3 mr-2">Xóa {selectedRecords.length} lựa chọn</button>
@@ -244,7 +299,7 @@ const ProductCategoy = () => {
                                                         <td>
                                                             <span ui-sref="info-category({id:item.ID})" class="badge badge-info" style={{ cursor: 'pointer', padding: '8px' }}> <i class="fas fa-info-circle"></i></span>
                                                             <span ui-sref="edit-category({id:item.ID})" class="badge badge-primary mx-2" style={{ cursor: 'pointer', padding: '8px' }}> <i class="far fa-edit"></i></span>
-                                                            <span ng-click="DeleteCategory($event,item.ID);" class="badge badge-danger" style={{ cursor: 'pointer', padding: '8px' }}> <i class="fas fa-trash-alt"></i></span>
+                                                            <span onClick={() => handleDelete(item)} class="badge badge-danger" style={{ cursor: 'pointer', padding: '8px' }}> <i class="fas fa-trash-alt"></i></span>
                                                         </td>
                                                     </tr>
                                                 )

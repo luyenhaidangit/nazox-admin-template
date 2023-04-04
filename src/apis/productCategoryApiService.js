@@ -1,7 +1,26 @@
 import axios from '../helpers/Apis/axiosCustomize';
 
+// const GetProductCategoryManage = (request) => {
+//     return axios.get('api/ProductCategory/Get', { params: request });
+// }
+
+// const DeleteProductCategoryMulti = (ids) => {
+//     return axios.delete('api/ProductCategory/DeleteMulti', {
+//         data: ids
+//     });
+// }
+
+// Laravel
 const GetProductCategoryManage = (request) => {
-    return axios.get('api/ProductCategory/Get', { params: request });
+    return axios.get('api/product_categories/get', { params: request });
+}
+
+const CreateProductCategoryManage = (request) => {
+    return axios.post('api/product_categories/create', request);
+}
+
+const DeleteProductCategoryManage = (id) => {
+    return axios.delete(`api/product_categories/delete/${id}`);
 }
 
 const DeleteProductCategoryMulti = (ids) => {
@@ -10,7 +29,10 @@ const DeleteProductCategoryMulti = (ids) => {
     });
 }
 
+
 export {
     GetProductCategoryManage,
-    DeleteProductCategoryMulti
+    DeleteProductCategoryMulti,
+    CreateProductCategoryManage,
+    DeleteProductCategoryManage
 };
