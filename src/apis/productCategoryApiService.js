@@ -1,8 +1,8 @@
 import axios from '../helpers/Apis/axiosCustomize';
 
-// const GetProductCategoryManage = (request) => {
-//     return axios.get('api/ProductCategory/Get', { params: request });
-// }
+const GetProductCategoryManage = (request) => {
+    return axios.get('api/ProductCategory/Get', { params: request });
+}
 
 // const DeleteProductCategoryMulti = (ids) => {
 //     return axios.delete('api/ProductCategory/DeleteMulti', {
@@ -11,9 +11,9 @@ import axios from '../helpers/Apis/axiosCustomize';
 // }
 
 // Laravel
-const GetProductCategoryManage = (request) => {
-    return axios.get('api/product_categories/get', { params: request });
-}
+// const GetProductCategoryManage = (request) => {
+//     return axios.get('api/product_categories/get', { params: request });
+// }
 
 const CreateProductCategoryManage = (request) => {
     return axios.post('api/product_categories/create', request);

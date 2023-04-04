@@ -24,6 +24,7 @@ function App() {
           <Route path='/' element={<Layout />}>
             <Route index element={<DashBoard />} />
             <Route path='product-categories' element={<ProductCategoy />} />
+            <Route path='product-categories/create' element={<ProductCategoryCreate />} />
           </Route>
           <Route exact path='/' element={<DashBoard />} />
         </Route>

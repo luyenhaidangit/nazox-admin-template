@@ -30,21 +30,21 @@ const ProductCategoy = () => {
 
     const fetchProductCateogories = async (request) => {
         let res = await GetProductCategoryManage(request);
-        // setProductCategories(res.items);
-        // setTotalPages(res.totalPages);
+        setProductCategories(res.items);
+        setTotalPages(res.totalPages);
 
         // Laravel
-        setProductCategories(res);
+        // setProductCategories(res);
         // setTotalPages(res.totalPages);
     }
 
-    useEffect(() => {
-        const request = {
-            pageIndex: pageIndex,
-            pageSize: pageSize,
-        }
-        fetchProductCateogories(request);
-    }, [pageIndex]);
+    // useEffect(() => {
+    //     const request = {
+    //         pageIndex: pageIndex,
+    //         pageSize: pageSize,
+    //     }
+    //     fetchProductCateogories(request);
+    // }, [pageIndex]);
 
     // Handle Sort
     const handleSort = (sortBy) => {
@@ -66,7 +66,7 @@ const ProductCategoy = () => {
             orderBy: sortState.orderBy
         };
         fetchProductCateogories(request);
-    }, [sortState]);
+    }, [sortState, pageIndex]);
 
     // Handel Multi
     const handleSelectAllCheckbox = (event) => {
@@ -217,7 +217,7 @@ const ProductCategoy = () => {
                     <div className="card">
                         <div className="card-body">
                             <div className='group-btn'>
-                                <button onClick={() => navigate("/product-category/create")} type="button" className="btn btn-success waves-effect waves-light mt-2 mb-3 mr-2">Thêm mới</button>
+                                <button onClick={() => navigate("/product-categories/create")} type="button" className="btn btn-success waves-effect waves-light mt-2 mb-3 mr-2">Thêm mới</button>
                                 {
                                     selectedRecords && selectedRecords.length > 0 &&
                                     <button onClick={() => submitDeleteMulti()} type="button" className="btn btn-danger waves-effect waves-light mt-2 mb-3 mr-2">Xóa {selectedRecords.length} lựa chọn</button>

@@ -62,3 +62,7 @@ table.dataTable thead .sorting_desc_disabled:after {
     vertical-align: top !important;
 }
 
+button.nav-link{
+    background-color: unset !important;
+}
+

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { CreateProductCategoryManage } from '../../apis/productCategoryApiService';
 import { ToastContainer, toast } from 'react-toastify';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 const ProductCategoryCreate = () => {
     const navigate = useNavigate();
@@ -69,56 +71,72 @@ const ProductCategoryCreate = () => {
                 <div className="col-12">
                     <div className="card">
                         <div className="card-body">
-                            <form onSubmit={(e) => handleSubmit(e)}>
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">Loại sản phẩm cha</label>
-                                    <div class="col-md-10">
-                                        <input class="form-control" type="text" id="example-text-input" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">Nhóm loại sản phẩm</label>
-                                    <div class="col-md-10">
-                                        <input class="form-control" type="text" id="example-text-input" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">Tên loại sản phẩm</label>
-                                    <div class="col-md-10">
-                                        <input value={name} onChange={(e) => handleChangeName(e)} class="form-control" type="text" id="example-text-input" />
-                                    </div>
-                                </div>
+                            <Tabs
+                                defaultActiveKey="home"
+                                transition={false}
+                                id="noanim-tab-example"
+                                className="nav nav-tabs nav-tabs-custom d-inline-flex mb-3"
+                            >
+                                <Tab eventKey="home" title="Thông tin">
+                                    <form onSubmit={(e) => handleSubmit(e)}>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">Loại sản phẩm cha</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="example-text-input" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">Nhóm loại sản phẩm</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="example-text-input" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">Tên loại sản phẩm</label>
+                                            <div class="col-md-10">
+                                                <input value={name} onChange={(e) => handleChangeName(e)} class="form-control" type="text" id="example-text-input" />
+                                            </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">Độ ưu tiên</label>
-                                    <div class="col-md-10">
-                                        <input class="form-control" type="text" id="example-text-input" />
-                                    </div>
-                                </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">Độ ưu tiên</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" id="example-text-input" />
+                                            </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">Ảnh đại diện</label>
-                                    <div class="col-md-10" style={{ maxWidth: "300px" }}>
-                                        <input type="file" class="custom-file-input" id="customFile" />
-                                        <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
-                                </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">Ảnh đại diện</label>
+                                            <div class="col-md-10" style={{ maxWidth: "300px" }}>
+                                                <input type="file" class="custom-file-input" id="customFile" />
+                                                <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">Ảnh minh họa</label>
-                                    <div class="col-md-10" style={{ maxWidth: "300px" }}>
-                                        <input type="file" class="custom-file-input" id="customFile" />
-                                        <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
-                                </div>
-                                <div class="custom-control custom-switch mb-2" dir="ltr">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" checked />
-                                    <label class="custom-control-label" for="customSwitch1">Hoạt động</label>
-                                </div>
-                                <div class="custom-control custom-switch mb-2 d-flex justify-content-end" dir="ltr">
-                                    <button type="submit" class="btn btn-success waves-effect waves-light">Xác nhận</button>
-                                </div>
-                            </form>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">Ảnh minh họa</label>
+                                            <div class="col-md-10" style={{ maxWidth: "300px" }}>
+                                                <input type="file" class="custom-file-input" id="customFile" />
+                                                <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-switch mb-2" dir="ltr">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked />
+                                            <label class="custom-control-label" for="customSwitch1">Hoạt động</label>
+                                        </div>
+                                        <div class="custom-control custom-switch mb-2 d-flex justify-content-end" dir="ltr">
+                                            <button type="submit" class="btn btn-success waves-effect waves-light">Xác nhận</button>
+                                        </div>
+                                    </form>
+                                </Tab>
+                                <Tab eventKey="profile" title="Profile">
+                                    <>haha</>
+                                </Tab>
+                                <Tab eventKey="contact" title="Contact">
+                                    <>hihi</>
+                                </Tab>
+                            </Tabs>
+
                         </div>
                     </div>
                 </div>
