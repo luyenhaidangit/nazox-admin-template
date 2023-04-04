@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 const LayoutAuthentication = () => {
     return (
@@ -36,6 +37,7 @@ const LayoutAuthentication = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
 
         </>
     )

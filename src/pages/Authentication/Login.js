@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { Authentication } from '../../apis/authenticationApiService'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const Login = async (request) => {
-        let res = await Authentication(request);
-        console.log(res)
-    }
+    // const Login = async (request) => {
+    //     let res = await Authentication(request);
+    //     console.log(res)
+    // }
+
+    const navigate = useNavigate();
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -19,6 +22,7 @@ const Login = () => {
         let res = await Authentication(userName, password);
         console.log(res)
         if (res.statusCode === 200) {
+            localStorage.setItem('accessToken', res?.data?.token);
             toast.success(res.message, {
                 position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
                 autoClose: 3000, // Thời gian tự động đóng thông báo (đơn vị là miliseconds)
@@ -28,7 +32,10 @@ const Login = () => {
                 draggable: true, // Cho phép kéo thông báo
                 progress: undefined // Không sử dụng thanh tiến trình tích lũy
             });
+
+            navigate("/");
         }
+
         else {
             toast.error(res.message, {
                 position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
@@ -96,7 +103,6 @@ const Login = () => {
                     <p>© 2023 FIT.UTEHY <i class="mdi mdi-heart text-danger"></i></p>
                 </div>
             </div>
-            <ToastContainer />
         </>
     )
 }

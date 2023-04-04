@@ -6,6 +6,7 @@ import DashBoard from './pages/DashBoard';
 import ProductCategoy from './pages/ProductCategory/ProductCategoy';
 import LayoutAuthentication from './layouts/LayoutAuthentication';
 import Login from './pages/Authentication/Login';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<Login />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

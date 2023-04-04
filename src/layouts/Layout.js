@@ -7,6 +7,7 @@ import LeftSideBar from './LeftSideBar'
 import RightSideBar from './RightSideBar'
 import $ from 'jquery';
 import MetisMenu from '@metismenu/react'
+import { ToastContainer } from 'react-toastify'
 
 // Components
 
