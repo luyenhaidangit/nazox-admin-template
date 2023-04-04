@@ -21,6 +21,7 @@ const ProductCategoryCreate = () => {
     const [imageFile, setImageFile] = useState(null);
     const [badgeIcon, setBadgeIcon] = useState(null);
     const [badgeIconFile, setBadgeIconFile] = useState(null);
+    const [published, setPublished] = useState(true);
 
     // Property
     // ParentId
@@ -62,39 +63,7 @@ const ProductCategoryCreate = () => {
         setDisplayOrder(+event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        console.log("hehe")
-        event.preventDefault();
-        const request = {
-            "id": 1,
-            "parent_product_category_id": null,
-            "product_category_group_id": null,
-            "name": name,
-            "display_order": 0,
-            "published": 1,
-            "badge_icon": null,
-            "image": null,
-            "deleted": 0,
-            "created_at": null,
-            "updated_at": null
-        }
-        const res = CreateProductCategoryManage(request);
-        toast.success(res.message, {
-            position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
-            autoClose: 3000, // Thời gian tự động đóng thông báo (đơn vị là miliseconds)
-            hideProgressBar: false, // Ẩn hoặc hiển thị thanh tiến trình
-            closeOnClick: true, // Đóng thông báo khi click vào nó
-            pauseOnHover: true, // Tạm dừng thời gian tự động đóng khi hover chuột vào thông báo
-            draggable: true, // Cho phép kéo thông báo
-            progress: undefined // Không sử dụng thanh tiến trình tích lũy
-        });
-
-        navigate("/product-category");
-        // if (res?.statusCode === 201) {
-
-        // }
-    }
-
+    // Image
     const handleChangeImage = (e) => {
         setImage(e.target.files[0].name);
         setImageFile(e.target.files[0]);
@@ -103,6 +72,51 @@ const ProductCategoryCreate = () => {
     const handleChangeBadgeIcon = (e) => {
         setBadgeIcon(e.target.files[0].name);
         setBadgeIconFile(e.target.files[0]);
+    }
+    // Published
+    function handleChangePublished(event) {
+        setPublished(event.target.checked);
+    }
+
+    const handleSubmit = (event) => {
+        // console.log("hehe")
+        event.preventDefault();
+        const request = {
+            name: name,
+            displayOrder: displayOrder,
+            image: image,
+            badgeIcon: badgeIcon,
+            published: published
+        }
+        // const request = {
+        //     "id": 1,
+        //     "parent_product_category_id": null,
+        //     "product_category_group_id": null,
+        //     "name": name,
+        //     "display_order": 0,
+        //     "published": 1,
+        //     "badge_icon": null,
+        //     "image": null,
+        //     "deleted": 0,
+        //     "created_at": null,
+        //     "updated_at": null
+        // }
+        // const res = CreateProductCategoryManage(request);
+        // toast.success(res.message, {
+        //     position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
+        //     autoClose: 3000, // Thời gian tự động đóng thông báo (đơn vị là miliseconds)
+        //     hideProgressBar: false, // Ẩn hoặc hiển thị thanh tiến trình
+        //     closeOnClick: true, // Đóng thông báo khi click vào nó
+        //     pauseOnHover: true, // Tạm dừng thời gian tự động đóng khi hover chuột vào thông báo
+        //     draggable: true, // Cho phép kéo thông báo
+        //     progress: undefined // Không sử dụng thanh tiến trình tích lũy
+        // });
+
+        // navigate("/product-category");
+        // if (res?.statusCode === 201) {
+
+        // }
+        console.log(request)
     }
 
     return (
@@ -197,7 +211,7 @@ const ProductCategoryCreate = () => {
                                             </div>
                                         </div>
                                         <div class="custom-control custom-switch mb-2" dir="ltr">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked />
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" onChange={(e) => handleChangePublished(e)} checked={published} />
                                             <label class="custom-control-label" for="customSwitch1">Hoạt động</label>
                                         </div>
                                         <div class="custom-control custom-switch mb-2 d-flex justify-content-end" dir="ltr">
