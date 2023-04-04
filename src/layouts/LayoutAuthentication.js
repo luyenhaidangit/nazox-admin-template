@@ -1,15 +1,18 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import "../assets/css/bootstrap.min.css";
+import "../assets/css/icons.min.css"
+import "../assets/css/custom.css"
 
 const LayoutAuthentication = () => {
     return (
         <>
-            <link href="../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+            {/* <link href="../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
             <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+            
+            <link href="../assets/css/custom.css" rel="stylesheet" type="text/css" /> */}
             <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-            <link href="../assets/css/custom.css" rel="stylesheet" type="text/css" />
-
             <div className="home-btn d-none d-sm-block">
                 <a href="index.html"><i className="mdi mdi-home-variant h2 text-white"></i></a>
             </div>

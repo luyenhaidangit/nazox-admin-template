@@ -1,13 +1,13 @@
 // Libraries
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Footer from './Footer'
+// import Footer from './Footer'
 import { Header } from './Header'
 import LeftSideBar from './LeftSideBar'
-import RightSideBar from './RightSideBar'
-import $ from 'jquery';
-import MetisMenu from '@metismenu/react'
-import { ToastContainer } from 'react-toastify'
+// import RightSideBar from './RightSideBar'
+// import $ from 'jquery';
+// import MetisMenu from '@metismenu/react'
+// import { ToastContainer } from 'react-toastify'
 
 // Components
 
