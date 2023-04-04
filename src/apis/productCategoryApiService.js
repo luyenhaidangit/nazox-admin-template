@@ -29,10 +29,15 @@ const DeleteProductCategoryMulti = (ids) => {
     });
 }
 
+const GetProductCategoryById = (id) => {
+    return axios.get(`api/product_categories/get_by_id/${id}`);
+}
+
 
 export {
     GetProductCategoryManage,
     DeleteProductCategoryMulti,
     CreateProductCategoryManage,
-    DeleteProductCategoryManage
+    DeleteProductCategoryManage,
+    GetProductCategoryById
 };

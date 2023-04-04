@@ -8,6 +8,7 @@ import LayoutAuthentication from './layouts/LayoutAuthentication';
 import Login from './pages/Authentication/Login';
 import { ToastContainer } from 'react-toastify';
 import ProductCategoryCreate from './pages/ProductCategory/ProductCategoryCreate';
+import ProductCategoryEdit from './pages/ProductCategory/ProductCategoryEdit';
 // import PrivateRoute from './components/Routers/PrivateRoute';
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         <Route path='/product-category' element={<Layout />}>
           <Route index element={isAuthenticated ? (<ProductCategoy />) : (<Navigate to="/dang-nhap" replace state={{ from: "/" }} />)} />
           <Route path='create' element={<ProductCategoryCreate />} />
+          <Route path='edit' element={<ProductCategoryEdit />} />
         </Route>
+        {/* <Route path='edit/:id' element={<ProductCategoryEdit />} /> */}
         <Route path='/dang-nhap' element={<LayoutAuthentication />}>
           <Route index element={<Login />} />
         </Route>
