@@ -5,11 +5,40 @@ import { CreateProductCategoryManage } from '../../apis/productCategoryApiServic
 import { ToastContainer, toast } from 'react-toastify';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import { GetProductCategoryParentAndGroupSelectFilter } from '../../apis/productCategoryApiService';
+import "../../assets/css/custom.css"
+import NoOptionsMessage from '../../components/Select/NoOptionsMessage';
 
 const ProductCategoryCreate = () => {
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
+    const [optionParentProductCategory, setOptionParentProductCategory] = useState([]);
+    const [optionProductCategoryGroup, setOptionProductCategoryGroup] = useState([]);
+
+    // Property
+    // ParentId
+    const fetchParentProductCateogory = async (name) => {
+        let res = await GetProductCategoryParentAndGroupSelectFilter(name);
+        setOptionParentProductCategory(res);
+    }
+
+    const handleChangeParentProductCategoryId = (value) => {
+        fetchParentProductCateogory(value);
+    }
+
+    // GroupId
+    const fetchProductCateogoryGroup = async (name) => {
+        let res = await GetProductCategoryParentAndGroupSelectFilter(name);
+        setOptionProductCategoryGroup(res);
+    }
+
+    const handleChangeProductCategoryGroup = (value) => {
+        fetchProductCateogoryGroup(value);
+    }
+
 
     const handleSubmit = (event) => {
         console.log("hehe")
@@ -48,6 +77,8 @@ const ProductCategoryCreate = () => {
         setName(event.target.value);
     };
 
+
+
     return (
         <>
             <div className="row">
@@ -82,13 +113,31 @@ const ProductCategoryCreate = () => {
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Loại sản phẩm cha</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="example-text-input" />
+                                                <div style={{ width: "300px" }} className="mr-3">
+                                                    <Select
+                                                        closeMenuOnSelect={true}
+                                                        components={{ NoOptionsMessage }}
+                                                        isSearchable
+                                                        options={optionParentProductCategory}
+                                                        placeholder='Loại sản phẩm cha'
+                                                        onInputChange={(value) => handleChangeParentProductCategoryId(value)}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Nhóm loại sản phẩm</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="example-text-input" />
+                                                <div style={{ width: "300px" }} className="mr-3">
+                                                    <Select
+                                                        closeMenuOnSelect={true}
+                                                        components={{ NoOptionsMessage }}
+                                                        isSearchable
+                                                        options={optionProductCategoryGroup}
+                                                        placeholder='Nhóm loại sản phẩm'
+                                                        onInputChange={(value) => handleChangeProductCategoryGroup(value)}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">

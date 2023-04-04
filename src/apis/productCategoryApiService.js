@@ -4,6 +4,10 @@ const GetProductCategoryManage = (request) => {
     return axios.get('api/ProductCategory/Get', { params: request });
 }
 
+const GetProductCategoryParentAndGroupSelectFilter = (name) => {
+    return axios.get(`api/ProductCategory/GetProductCategoryParentAndGroupSelectFilter?name=${name}`);
+}
+
 // const DeleteProductCategoryMulti = (ids) => {
 //     return axios.delete('api/ProductCategory/DeleteMulti', {
 //         data: ids
@@ -34,10 +38,12 @@ const GetProductCategoryById = (id) => {
 }
 
 
+
 export {
     GetProductCategoryManage,
     DeleteProductCategoryMulti,
     CreateProductCategoryManage,
     DeleteProductCategoryManage,
-    GetProductCategoryById
+    GetProductCategoryById,
+    GetProductCategoryParentAndGroupSelectFilter
 };

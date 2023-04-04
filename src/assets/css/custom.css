@@ -66,3 +66,11 @@ button.nav-link{
     background-color: unset !important;
 }
 
+.css-1nmdiq5-menu{
+    z-index: 9999999999999999999999999999999999 !important;
+}
+
+.custom-file-input{
+    position: unset !important;
+}
+
