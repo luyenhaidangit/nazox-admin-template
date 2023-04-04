@@ -22,7 +22,7 @@ const Login = () => {
         let res = await Authentication(userName, password);
         console.log(res)
         if (res.statusCode === 200) {
-            localStorage.setItem('accessToken', res?.data?.token);
+            localStorage.setItem('token', res?.data?.token);
             toast.success(res.message, {
                 position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
                 autoClose: 3000, // Thời gian tự động đóng thông báo (đơn vị là miliseconds)
