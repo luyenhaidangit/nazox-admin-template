@@ -17,6 +17,10 @@ const ProductCategoryCreate = () => {
     const [optionProductCategoryGroup, setOptionProductCategoryGroup] = useState([]);
     const [name, setName] = useState('');
     const [displayOrder, setDisplayOrder] = useState(0);
+    const [image, setImage] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
+    const [badgeIcon, setBadgeIcon] = useState(null);
+    const [badgeIconFile, setBadgeIconFile] = useState(null);
 
     // Property
     // ParentId
@@ -58,10 +62,6 @@ const ProductCategoryCreate = () => {
         setDisplayOrder(+event.target.value);
     };
 
-
-
-
-
     const handleSubmit = (event) => {
         console.log("hehe")
         event.preventDefault();
@@ -95,9 +95,15 @@ const ProductCategoryCreate = () => {
         // }
     }
 
+    const handleChangeImage = (e) => {
+        setImage(e.target.files[0].name);
+        setImageFile(e.target.files[0]);
+    }
 
-
-
+    const handleChangeBadgeIcon = (e) => {
+        setBadgeIcon(e.target.files[0].name);
+        setBadgeIconFile(e.target.files[0]);
+    }
 
     return (
         <>
@@ -166,27 +172,28 @@ const ProductCategoryCreate = () => {
                                                 <input style={{ width: "300px" }} value={name} onChange={(e) => handleChangeName(e)} class="form-control" type="text" id="example-text-input" />
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Độ ưu tiên</label>
                                             <div class="col-md-10">
                                                 <input value={displayOrder} onChange={(e) => handleChangeDisplayOrder(e)} onKeyPress={(e) => handleKeyPressNumber(e)} style={{ width: "300px" }} class="form-control" type="text" id="example-text-input" />
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Ảnh đại diện</label>
                                             <div class="col-md-10" style={{ maxWidth: "300px" }}>
-                                                <input type="file" class="custom-file-input" id="customFile" />
-                                                <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">Choose file</label>
+                                                <input onChange={(e) => handleChangeImage(e)} type="file" class="custom-file-input" id="customFile1" />
+                                                <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile1">
+                                                    {image !== null ? image : 'Chọn file'}
+                                                </label>
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Ảnh minh họa</label>
                                             <div class="col-md-10" style={{ maxWidth: "300px" }}>
-                                                <input type="file" class="custom-file-input" id="customFile" />
-                                                <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">Choose file</label>
+                                                <input onChange={(e) => handleChangeBadgeIcon(e)} type="file" class="custom-file-input" id="customFile" />
+                                                <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">
+                                                    {badgeIcon !== null ? badgeIcon : 'Chọn file'}
+                                                </label>
                                             </div>
                                         </div>
                                         <div class="custom-control custom-switch mb-2" dir="ltr">
