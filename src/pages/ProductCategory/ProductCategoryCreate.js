@@ -13,10 +13,10 @@ import NoOptionsMessage from '../../components/Select/NoOptionsMessage';
 
 const ProductCategoryCreate = () => {
     const navigate = useNavigate();
-
-    const [name, setName] = useState('');
     const [optionParentProductCategory, setOptionParentProductCategory] = useState([]);
     const [optionProductCategoryGroup, setOptionProductCategoryGroup] = useState([]);
+    const [name, setName] = useState('');
+    const [displayOrder, setDisplayOrder] = useState(0);
 
     // Property
     // ParentId
@@ -38,6 +38,28 @@ const ProductCategoryCreate = () => {
     const handleChangeProductCategoryGroup = (value) => {
         fetchProductCateogoryGroup(value);
     }
+    // Name
+    const handleChangeName = (event) => {
+        setName(event.target.value);
+    };
+
+    // DisplayOrder
+    const handleKeyPressNumber = (event) => {
+        const keyCode = event.keyCode || event.which;
+        const keyValue = String.fromCharCode(keyCode);
+
+        // Check if the key pressed is a number or a backspace/delete key
+        if (/[^0-9]/.test(keyValue) && ![8, 46].includes(keyCode)) {
+            event.preventDefault();
+        }
+    };
+
+    const handleChangeDisplayOrder = (event) => {
+        setDisplayOrder(+event.target.value);
+    };
+
+
+
 
 
     const handleSubmit = (event) => {
@@ -73,9 +95,7 @@ const ProductCategoryCreate = () => {
         // }
     }
 
-    const handleChangeName = (event) => {
-        setName(event.target.value);
-    };
+
 
 
 
@@ -143,14 +163,14 @@ const ProductCategoryCreate = () => {
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Tên loại sản phẩm</label>
                                             <div class="col-md-10">
-                                                <input value={name} onChange={(e) => handleChangeName(e)} class="form-control" type="text" id="example-text-input" />
+                                                <input style={{ width: "300px" }} value={name} onChange={(e) => handleChangeName(e)} class="form-control" type="text" id="example-text-input" />
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Độ ưu tiên</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="example-text-input" />
+                                                <input value={displayOrder} onChange={(e) => handleChangeDisplayOrder(e)} onKeyPress={(e) => handleKeyPressNumber(e)} style={{ width: "300px" }} class="form-control" type="text" id="example-text-input" />
                                             </div>
                                         </div>
 
