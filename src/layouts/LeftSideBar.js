@@ -44,7 +44,7 @@ const LeftSideBar = () => {
                                     <span>Danh mục</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li className='pointer cursor-pointer' onClick={() => navigate("/product-category")}><a link="/product-category">Loại sản phẩm</a></li>
+                                    <li className='pointer cursor-pointer' onClick={() => navigate("/product-categories")}><a link="/product-categories">Loại sản phẩm</a></li>
                                     <li className='cursor-pointer' onClick={() => navigate("/brand")}><a link="/brand">Nhãn hiệu</a></li>
                                     <li className='cursor-pointer' onClick={() => navigate("/product")}><a link="/product">Sản phẩm</a></li>
                                 </ul>

@@ -1,4 +1,5 @@
 import React from 'react'
+// import WithAuth from '../components/Authentication/WithAuth'
 
 const DashBoard = () => {
     return (

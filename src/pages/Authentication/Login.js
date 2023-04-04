@@ -5,16 +5,12 @@ import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    // const Login = async (request) => {
-    //     let res = await Authentication(request);
-    //     console.log(res)
-    // }
-
+    // Hook
     const navigate = useNavigate();
-
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
+    // Handle
     const handleLogin = async (event) => {
         event.preventDefault(); // ngăn chặn submit form mặc định
 
