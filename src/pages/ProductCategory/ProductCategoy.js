@@ -128,6 +128,7 @@ const ProductCategoy = () => {
                         pageSize
                     }
                     fetchProductCateogories(request);
+                    setSelectedRecords([]);
                 }).catch(function (error) {
 
                 });
@@ -148,7 +149,7 @@ const ProductCategoy = () => {
         const MySwal = withReactContent(Swal);
 
         const result = await MySwal.fire({
-            title: `Bạn có chắc muốn xóa ${selectedRecords.length} bản ghi?`,
+            title: `Bạn có chắc muốn xóa loại sản phẩm ${item.name}?`,
             text: "Bạn sẽ không thể khôi phục dữ liệu sau khi xóa!",
             icon: 'warning',
             showCancelButton: true,
@@ -187,6 +188,7 @@ const ProductCategoy = () => {
                 // Xử lý lỗi ở đây
                 console.error(error);
             }
+
         }
 
         // const res = DeleteProductCategoryManage(item?.id);

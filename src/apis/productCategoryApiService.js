@@ -12,11 +12,15 @@ const CreateProductCategory = (request) => {
     return axios.post('api/ProductCategory/Create', request);
 }
 
-// const DeleteProductCategoryMulti = (ids) => {
-//     return axios.delete('api/ProductCategory/DeleteMulti', {
-//         data: ids
-//     });
-// }
+const DeleteProductCategoryManage = (id) => {
+    return axios.delete(`api/ProductCategory/Delete?id=${id}`);
+}
+
+const DeleteProductCategoryMulti = (ids) => {
+    return axios.delete('api/ProductCategory/DeleteMulti', {
+        data: ids
+    });
+}
 
 // Laravel
 // const GetProductCategoryManage = (request) => {
@@ -27,15 +31,15 @@ const CreateProductCategoryManage = (request) => {
     return axios.post('api/product_categories/create', request);
 }
 
-const DeleteProductCategoryManage = (id) => {
-    return axios.delete(`api/product_categories/delete/${id}`);
-}
+// const DeleteProductCategoryManage = (id) => {
+//     return axios.delete(`api/product_categories/delete/${id}`);
+// }
 
-const DeleteProductCategoryMulti = (ids) => {
-    return axios.delete('api/ProductCategory/DeleteMulti', {
-        data: ids
-    });
-}
+// const DeleteProductCategoryMulti = (ids) => {
+//     return axios.delete('api/ProductCategory/DeleteMulti', {
+//         data: ids
+//     });
+// }
 
 const GetProductCategoryById = (id) => {
     return axios.get(`api/product_categories/get_by_id/${id}`);
