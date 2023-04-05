@@ -10,11 +10,16 @@ import makeAnimated from 'react-select/animated';
 import { GetProductCategoryParentAndGroupSelectFilter } from '../../apis/productCategoryApiService';
 import "../../assets/css/custom.css"
 import NoOptionsMessage from '../../components/Select/NoOptionsMessage';
+import { UploadFile } from '../../apis/fileApiService';
+import { CreateProductCategory } from '../../apis/productCategoryApiService';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductCategoryCreate = () => {
     const navigate = useNavigate();
     const [optionParentProductCategory, setOptionParentProductCategory] = useState([]);
+    const [parentProductCategoryId, setParentProductCategory] = useState(null);
     const [optionProductCategoryGroup, setOptionProductCategoryGroup] = useState([]);
+    const [productCategoryGroupId, setProductCategoryGroupId] = useState(null);
     const [name, setName] = useState('');
     const [displayOrder, setDisplayOrder] = useState(0);
     const [image, setImage] = useState(null);
@@ -30,8 +35,12 @@ const ProductCategoryCreate = () => {
         setOptionParentProductCategory(res);
     }
 
-    const handleChangeParentProductCategoryId = (value) => {
+    const handleChangeOptionParentProductCategoryId = (value) => {
         fetchParentProductCateogory(value);
+    }
+
+    const handleChangeParentProductCategoryId = (e) => {
+        setParentProductCategory(e.value);
     }
 
     // GroupId
@@ -40,8 +49,12 @@ const ProductCategoryCreate = () => {
         setOptionProductCategoryGroup(res);
     }
 
-    const handleChangeProductCategoryGroup = (value) => {
+    const handleChangeOptionProductCategoryGroup = (value) => {
         fetchProductCateogoryGroup(value);
+    }
+
+    const handleChangeProductCategoryGroupId = (e) => {
+        setProductCategoryGroupId(e.value);
     }
     // Name
     const handleChangeName = (event) => {
@@ -78,45 +91,58 @@ const ProductCategoryCreate = () => {
         setPublished(event.target.checked);
     }
 
-    const handleSubmit = (event) => {
-        // console.log("hehe")
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        const formDataImage = new FormData();
+        formDataImage.append("File", imageFile);
+        formDataImage.append("Folder", "ProductCategory");
+        const formDataBadgeIcon = new FormData();
+        formDataBadgeIcon.append("File", badgeIconFile);
+        formDataBadgeIcon.append("Folder", "ProductCategory");
+        let image = null;
+        let badgeIcon = null;
+        if (imageFile) {
+            image = await UploadFile(formDataImage);
+        }
+
+        if (badgeIconFile) {
+            badgeIcon = await UploadFile(formDataBadgeIcon);
+        }
+
         const request = {
+            parentProductCategoryId: parentProductCategoryId,
+            productCategoryGroupId: productCategoryGroupId,
             name: name,
             displayOrder: displayOrder,
             image: image,
             badgeIcon: badgeIcon,
             published: published
         }
-        // const request = {
-        //     "id": 1,
-        //     "parent_product_category_id": null,
-        //     "product_category_group_id": null,
-        //     "name": name,
-        //     "display_order": 0,
-        //     "published": 1,
-        //     "badge_icon": null,
-        //     "image": null,
-        //     "deleted": 0,
-        //     "created_at": null,
-        //     "updated_at": null
-        // }
-        // const res = CreateProductCategoryManage(request);
-        // toast.success(res.message, {
-        //     position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
-        //     autoClose: 3000, // Thời gian tự động đóng thông báo (đơn vị là miliseconds)
-        //     hideProgressBar: false, // Ẩn hoặc hiển thị thanh tiến trình
-        //     closeOnClick: true, // Đóng thông báo khi click vào nó
-        //     pauseOnHover: true, // Tạm dừng thời gian tự động đóng khi hover chuột vào thông báo
-        //     draggable: true, // Cho phép kéo thông báo
-        //     progress: undefined // Không sử dụng thanh tiến trình tích lũy
-        // });
 
-        // navigate("/product-category");
-        // if (res?.statusCode === 201) {
-
-        // }
-        console.log(request)
+        const res = await CreateProductCategory(request);
+        console.log(res);
+        if (res.statusCode === 201) {
+            toast.success(res.message, {
+                position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
+                autoClose: 3000, // Thời gian tự động đóng thông báo (đơn vị là miliseconds)
+                hideProgressBar: false, // Ẩn hoặc hiển thị thanh tiến trình
+                closeOnClick: true, // Đóng thông báo khi click vào nó
+                pauseOnHover: true, // Tạm dừng thời gian tự động đóng khi hover chuột vào thông báo
+                draggable: true, // Cho phép kéo thông báo
+                progress: undefined // Không sử dụng thanh tiến trình tích lũy
+            });
+            navigate("/product-categories")
+        } else {
+            toast.error(res.message, {
+                position: toast.POSITION.TOP_RIGHT, // Vị trí hiển thị của thông báo
+                autoClose: 3000, // Thời gian tự động đóng thông báo (đơn vị là miliseconds)
+                hideProgressBar: false, // Ẩn hoặc hiển thị thanh tiến trình
+                closeOnClick: true, // Đóng thông báo khi click vào nó
+                pauseOnHover: true, // Tạm dừng thời gian tự động đóng khi hover chuột vào thông báo
+                draggable: true, // Cho phép kéo thông báo
+                progress: undefined // Không sử dụng thanh tiến trình tích lũy
+            });
+        }
     }
 
     return (
@@ -160,7 +186,8 @@ const ProductCategoryCreate = () => {
                                                         isSearchable
                                                         options={optionParentProductCategory}
                                                         placeholder='Loại sản phẩm cha'
-                                                        onInputChange={(value) => handleChangeParentProductCategoryId(value)}
+                                                        onInputChange={(value) => handleChangeOptionParentProductCategoryId(value)}
+                                                        onChange={(e) => handleChangeParentProductCategoryId(e)}
                                                     />
                                                 </div>
                                             </div>
@@ -175,7 +202,8 @@ const ProductCategoryCreate = () => {
                                                         isSearchable
                                                         options={optionProductCategoryGroup}
                                                         placeholder='Nhóm loại sản phẩm'
-                                                        onInputChange={(value) => handleChangeProductCategoryGroup(value)}
+                                                        onInputChange={(value) => handleChangeOptionProductCategoryGroup(value)}
+                                                        onChange={(e) => handleChangeProductCategoryGroupId(e)}
                                                     />
                                                 </div>
                                             </div>
@@ -197,7 +225,7 @@ const ProductCategoryCreate = () => {
                                             <div class="col-md-10" style={{ maxWidth: "300px" }}>
                                                 <input onChange={(e) => handleChangeImage(e)} type="file" class="custom-file-input" id="customFile1" />
                                                 <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile1">
-                                                    {image !== null ? image : 'Chọn file'}
+                                                    {imageFile !== null ? imageFile.name : 'Chọn file'}
                                                 </label>
                                             </div>
                                         </div>
@@ -206,7 +234,7 @@ const ProductCategoryCreate = () => {
                                             <div class="col-md-10" style={{ maxWidth: "300px" }}>
                                                 <input onChange={(e) => handleChangeBadgeIcon(e)} type="file" class="custom-file-input" id="customFile" />
                                                 <label style={{ margin: "0 12px" }} class="custom-file-label" for="customFile">
-                                                    {badgeIcon !== null ? badgeIcon : 'Chọn file'}
+                                                    {badgeIconFile !== null ? badgeIconFile.name : 'Chọn file'}
                                                 </label>
                                             </div>
                                         </div>
