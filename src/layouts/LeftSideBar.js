@@ -13,7 +13,11 @@ const LeftSideBar = () => {
         $("#side-menu").metisMenu();
 
         // Lấy ra đường dẫn của trang hiện tại
-        const currentUrl = location.pathname;
+        let currentUrl = location.pathname;
+
+        if (currentUrl === "/product-categories" || currentUrl === "/product-categories/create") {
+            currentUrl = "/product-categories";
+        }
 
         // Xóa hết class active của các phần tử trước đó
         $("#sidebar-menu a").removeClass("active mm-active");
