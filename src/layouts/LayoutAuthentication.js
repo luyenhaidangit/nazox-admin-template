@@ -41,7 +41,6 @@ const LayoutAuthentication = () => {
                 </div>
             </div>
             <ToastContainer />
-
         </>
     )
 }
