@@ -26,7 +26,7 @@ const ProductCategoy = () => {
             pageSize
         }
         fetchProductCateogories(request);
-    }, []);
+    }, [pageIndex, pageSize]);
 
     const fetchProductCateogories = async (request) => {
         let res = await GetProductCategoryManage(request);
@@ -59,6 +59,7 @@ const ProductCategoy = () => {
     };
 
     useEffect(() => {
+        setPageSize(10);
         const request = {
             pageIndex: pageIndex,
             pageSize: pageSize,
@@ -66,7 +67,7 @@ const ProductCategoy = () => {
             orderBy: sortState.orderBy
         };
         fetchProductCateogories(request);
-    }, [sortState, pageIndex]);
+    }, [sortState, pageIndex, pageSize]);
 
     // Handel Multi
     const handleSelectAllCheckbox = (event) => {
@@ -205,7 +206,7 @@ const ProductCategoy = () => {
 
                         <div className="page-title-right">
                             <ol className="breadcrumb m-0">
-                                <li className="breadcrumb-item"><a href="javascript: void(0);">Loại sản phẩm</a></li>
+                                <li className="breadcrumb-item"><span>Loại sản phẩm</span></li>
                                 <li className="breadcrumb-item active">Danh sách</li>
                             </ol>
                         </div>
@@ -236,19 +237,19 @@ const ProductCategoy = () => {
                                 </div>
                             </div>
                             <div className='row mt-3'>
-                                <table id="datatable" class="dataTable table table-bordered dt-responsive nowrap" style={{ borderCollapse: 'collapse', borderSpacing: '0', width: '100%', margin: "0 12px" }}>
+                                <table id="datatable" className="dataTable table table-bordered dt-responsive nowrap" style={{ borderCollapse: 'collapse', borderSpacing: '0', width: '100%', margin: "0 12px" }}>
                                     <thead>
                                         <tr>
                                             <th style={{ maxWidth: "4px", borderRight: "none" }}>
-                                                <div class="custom-control custom-checkbox" style={{ width: "6px" }}>
+                                                <div className="custom-control custom-checkbox" style={{ width: "6px" }}>
                                                     <input
                                                         type="checkbox"
-                                                        class="custom-control-input"
+                                                        className="custom-control-input"
                                                         id="ordercheck"
                                                         onChange={(e) => handleSelectAllCheckbox(e)}
                                                         checked={productCategories.map((item) => item.id).every((item) => selectedRecords.includes(item))}
                                                         ref={selectAllCheckboxRef} />
-                                                    <label class="custom-control-label" for="ordercheck">&nbsp;</label>
+                                                    <label className="custom-control-label" htmlFor="ordercheck">&nbsp;</label>
                                                 </div>
                                             </th>
                                             <th className='d-flex align-items-center sorting_asc' onClick={() => handleSort('id')}>
@@ -268,11 +269,11 @@ const ProductCategoy = () => {
                                         {
                                             productCategories && productCategories.map((item, index) => {
                                                 return (
-                                                    <tr>
+                                                    <tr key={`product-category-item-${index}`}>
                                                         <td style={{ maxWidth: "4px", borderRight: "none" }}>
-                                                            <div class="custom-control custom-checkbox" style={{ width: "6px" }}>
-                                                                <input type="checkbox" class="custom-control-input" id={`ordercheck-${item.id}`} checked={selectedRecords.includes(item.id)} onChange={(event) => handleSelectRecord(event, item)} />
-                                                                <label class="custom-control-label" for={`ordercheck-${item.id}`}>&nbsp;</label>
+                                                            <div className="custom-control custom-checkbox" style={{ width: "6px" }}>
+                                                                <input type="checkbox" className="custom-control-input" id={`ordercheck-${item.id}`} checked={selectedRecords.includes(item.id)} onChange={(event) => handleSelectRecord(event, item)} />
+                                                                <label className="custom-control-label" htmlFor={`ordercheck-${item.id}`}>&nbsp;</label>
                                                             </div>
                                                         </td>
                                                         <td style={{ paddingLeft: "0px" }}>{item.id}</td>
@@ -280,7 +281,7 @@ const ProductCategoy = () => {
                                                         <td className='d-flex justify-content-center'>
                                                             {
                                                                 item.image &&
-                                                                <img style={{ height: "36px" }} src={'https://localhost:7039' + item.image} />
+                                                                <img style={{ height: "36px" }} src={'https://localhost:7039' + item.image} alt='Product Category' />
                                                             }
                                                         </td>
                                                         <td>
@@ -291,17 +292,17 @@ const ProductCategoy = () => {
                                                         <td>
                                                             {
                                                                 item.published && item.published === true &&
-                                                                <span class="badge badge-success">Hoạt động</span>
+                                                                <span className="badge badge-success">Hoạt động</span>
                                                             }
                                                             {
                                                                 item.published && item.published === false &&
-                                                                <span class="badge badge-success">Không hoạt động</span>
+                                                                <span className="badge badge-success">Không hoạt động</span>
                                                             }
                                                         </td>
                                                         <td>
-                                                            <span ui-sref="info-category({id:item.ID})" class="badge badge-info" style={{ cursor: 'pointer', padding: '8px' }}> <i class="fas fa-info-circle"></i></span>
-                                                            <span ui-sref="edit-category({id:item.ID})" class="badge badge-primary mx-2" style={{ cursor: 'pointer', padding: '8px' }}> <i class="far fa-edit"></i></span>
-                                                            <span onClick={() => handleDelete(item)} class="badge badge-danger" style={{ cursor: 'pointer', padding: '8px' }}> <i class="fas fa-trash-alt"></i></span>
+                                                            <span ui-sref="info-category({id:item.ID})" className="badge badge-info" style={{ cursor: 'pointer', padding: '8px' }}> <i className="fas fa-info-circle"></i></span>
+                                                            <span ui-sref="edit-category({id:item.ID})" className="badge badge-primary mx-2" style={{ cursor: 'pointer', padding: '8px' }}> <i className="far fa-edit"></i></span>
+                                                            <span onClick={() => handleDelete(item)} className="badge badge-danger" style={{ cursor: 'pointer', padding: '8px' }}> <i className="fas fa-trash-alt"></i></span>
                                                         </td>
                                                     </tr>
                                                 )
@@ -311,24 +312,24 @@ const ProductCategoy = () => {
                                 </table>
                             </div>
                             <div className="row justify-content-end">
-                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                    <ul class="pagination pagination-rounded">
-                                        <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
-                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">
-                                                <i class="mdi mdi-chevron-left"></i>
-                                            </a>
+                                <div className="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <ul className="pagination pagination-rounded">
+                                        <li className="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
+                                            <span href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" className="page-link">
+                                                <i className="mdi mdi-chevron-left"></i>
+                                            </span>
                                         </li>
                                         {[...Array(totalPages)].map((_, i) => (
-                                            <li onClick={() => setPageIndex(i + 1)} className={`paginate_button page-item cursor-pointer ${i + 1 === pageIndex ? 'active' : ''}`}>
-                                                <a data-dt-idx="1" tabindex="0" class="page-link">
+                                            <li onClick={() => setPageIndex(i + 1)} key={`paging-elemnet-${i}`} className={`paginate_button page-item cursor-pointer ${i + 1 === pageIndex ? 'active' : ''}`}>
+                                                <span data-dt-idx="1" className="page-link">
                                                     {i + 1}
-                                                </a>
+                                                </span>
                                             </li>
                                         ))}
-                                        <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                            <a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">
-                                                <i class="mdi mdi-chevron-right"></i>
-                                            </a>
+                                        <li className="paginate_button page-item next" id="DataTables_Table_0_next">
+                                            <span aria-controls="DataTables_Table_0" data-dt-idx="3" className="page-link">
+                                                <i className="mdi mdi-chevron-right"></i>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>

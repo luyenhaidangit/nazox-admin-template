@@ -8,35 +8,35 @@ export const Header = () => {
                     <div className="d-flex">
 
                         <div className="navbar-brand-box">
-                            <a href="index.html" className="logo logo-dark">
+                            <span href="index.html" className="logo logo-dark">
                                 <span className="logo-sm">
                                     <img src="/assets/images/logo-sm-dark.png" alt="" height="22" />
                                 </span>
                                 <span className="logo-lg">
                                     <img src="/assets/images/logo-dark.png" alt="" height="20" />
                                 </span>
-                            </a>
+                            </span>
 
-                            <a href="index.html" className="logo logo-light">
+                            <span href="index.html" className="logo logo-light">
                                 <span className="logo-sm">
                                     <img src="/assets/images/logo-sm-light.png" alt="" height="22" />
                                 </span>
                                 <span className="logo-lg">
                                     <img src="/assets/images/logo-light.png" alt="" height="20" />
                                 </span>
-                            </a>
+                            </span>
                         </div>
 
                         <button type="button" className="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
                             <i className="ri-menu-2-line align-middle"></i>
                         </button>
 
-                        <form className="app-search d-none d-lg-block">
+                        <div className="app-search d-none d-lg-block">
                             <div className="position-relative">
                                 <input type="text" className="form-control" placeholder="Search..." />
                                 <span className="ri-search-line"></span>
                             </div>
-                        </form>
+                        </div>
 
                         <div className="dropdown dropdown-mega d-none d-lg-block ml-2">
                             <button type="button" className="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
@@ -180,7 +180,7 @@ export const Header = () => {
                             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                                 aria-labelledby="page-header-search-dropdown">
 
-                                <form className="p-3">
+                                <div className="p-3">
                                     <div className="form-group m-0">
                                         <div className="input-group">
                                             <input type="text" className="form-control" placeholder="Search ..." />
@@ -189,7 +189,7 @@ export const Header = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
 
@@ -201,21 +201,21 @@ export const Header = () => {
                             <div className="dropdown-menu dropdown-menu-right">
 
                                 <span className="dropdown-item notify-item">
-                                    <img src="/assets/images/flags/spain.jpg" alt="user-image" className="mr-1" height="12" /> <span className="align-middle">Spanish</span>
+                                    <img src="/assets/images/flags/spain.jpg" alt="user" className="mr-1" height="12" /> <span className="align-middle">Spanish</span>
                                 </span>
 
 
                                 <span className="dropdown-item notify-item">
-                                    <img src="/assets/images/flags/germany.jpg" alt="user-image" className="mr-1" height="12" /> <span className="align-middle">German</span>
+                                    <img src="/assets/images/flags/germany.jpg" alt="user" className="mr-1" height="12" /> <span className="align-middle">German</span>
                                 </span>
 
                                 <span className="dropdown-item notify-item">
-                                    <img src="/assets/images/flags/italy.jpg" alt="user-image" className="mr-1" height="12" /> <span className="align-middle">Italian</span>
+                                    <img src="/assets/images/flags/italy.jpg" alt="user" className="mr-1" height="12" /> <span className="align-middle">Italian</span>
                                 </span>
 
 
                                 <span className="dropdown-item notify-item">
-                                    <img src="/assets/images/flags/russia.jpg" alt="user-image" className="mr-1" height="12" /> <span className="align-middle">Russian</span>
+                                    <img src="/assets/images/flags/russia.jpg" alt="user" className="mr-1" height="12" /> <span className="align-middle">Russian</span>
                                 </span>
                             </div>
                         </div>
@@ -229,43 +229,43 @@ export const Header = () => {
                                 <div className="px-lg-2">
                                     <div className="row no-gutters">
                                         <div className="col">
-                                            <a className="dropdown-icon-item" href="#">
+                                            <span className="dropdown-icon-item" href="#">
                                                 <img src="/assets/images/brands/github.png" alt="Github" />
                                                 <span>GitHub</span>
-                                            </a>
+                                            </span>
                                         </div>
                                         <div className="col">
-                                            <a className="dropdown-icon-item" href="#">
+                                            <span className="dropdown-icon-item" href="#">
                                                 <img src="/assets/images/brands/bitbucket.png" alt="bitbucket" />
                                                 <span>Bitbucket</span>
-                                            </a>
+                                            </span>
                                         </div>
                                         <div className="col">
-                                            <a className="dropdown-icon-item" href="#">
+                                            <span className="dropdown-icon-item" href="#">
                                                 <img src="/assets/images/brands/dribbble.png" alt="dribbble" />
                                                 <span>Dribbble</span>
-                                            </a>
+                                            </span>
                                         </div>
                                     </div>
 
                                     <div className="row no-gutters">
                                         <div className="col">
-                                            <a className="dropdown-icon-item" href="#">
+                                            <span className="dropdown-icon-item" href="#">
                                                 <img src="/assets/images/brands/dropbox.png" alt="dropbox" />
                                                 <span>Dropbox</span>
-                                            </a>
+                                            </span>
                                         </div>
                                         <div className="col">
-                                            <a className="dropdown-icon-item" href="#">
+                                            <span className="dropdown-icon-item" href="#">
                                                 <img src="/assets/images/brands/mail_chimp.png" alt="mail_chimp" />
                                                 <span>Mail Chimp</span>
-                                            </a>
+                                            </span>
                                         </div>
                                         <div className="col">
-                                            <a className="dropdown-icon-item" href="#">
+                                            <span className="dropdown-icon-item" href="#">
                                                 <img src="/assets/images/brands/slack.png" alt="slack" />
                                                 <span>Slack</span>
-                                            </a>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@ export const Header = () => {
                                     </div>
                                 </div>
                                 <div data-simplebar style={{ maxHeight: "230px" }}>
-                                    <a href="" className="text-reset notification-item">
+                                    <span href="" className="text-reset notification-item">
                                         <div className="media">
                                             <div className="avatar-xs mr-3">
                                                 <span className="avatar-title bg-primary rounded-circle font-size-16">
@@ -312,8 +312,8 @@ export const Header = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a href="" className="text-reset notification-item">
+                                    </span>
+                                    <span href="" className="text-reset notification-item">
                                         <div className="media">
                                             <img src="/assets/images/users/avatar-3.jpg"
                                                 className="mr-3 rounded-circle avatar-xs" alt="user-pic" />
@@ -325,8 +325,8 @@ export const Header = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a href="" className="text-reset notification-item">
+                                    </span>
+                                    <span href="" className="text-reset notification-item">
                                         <div className="media">
                                             <div className="avatar-xs mr-3">
                                                 <span className="avatar-title bg-success rounded-circle font-size-16">
@@ -341,9 +341,9 @@ export const Header = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
 
-                                    <a href="" className="text-reset notification-item">
+                                    <span href="" className="text-reset notification-item">
                                         <div className="media">
                                             <img src="/assets/images/users/avatar-4.jpg"
                                                 className="mr-3 rounded-circle avatar-xs" alt="user-pic" />
@@ -355,12 +355,12 @@ export const Header = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </span>
                                 </div>
                                 <div className="p-2 border-top">
-                                    <a className="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+                                    <span className="btn btn-sm btn-link font-size-14 btn-block text-center">
                                         <i className="mdi mdi-arrow-right-circle mr-1"></i> View More..
-                                    </a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -375,12 +375,12 @@ export const Header = () => {
                             </button>
                             <div className="dropdown-menu dropdown-menu-right">
 
-                                <a className="dropdown-item" href="#"><i className="ri-user-line align-middle mr-1"></i> Profile</a>
-                                <a className="dropdown-item" href="#"><i className="ri-wallet-2-line align-middle mr-1"></i> My Wallet</a>
-                                <a className="dropdown-item d-block" href="#"><span className="badge badge-success float-right mt-1">11</span><i className="ri-settings-2-line align-middle mr-1"></i> Settings</a>
-                                <a className="dropdown-item" href="#"><i className="ri-lock-unlock-line align-middle mr-1"></i> Lock screen</a>
+                                <span className="dropdown-item" href="#"><i className="ri-user-line align-middle mr-1"></i> Profile</span>
+                                <span className="dropdown-item" href="#"><i className="ri-wallet-2-line align-middle mr-1"></i> My Wallet</span>
+                                <span className="dropdown-item d-block" href="#"><span className="badge badge-success float-right mt-1">11</span><i className="ri-settings-2-line align-middle mr-1"></i> Settings</span>
+                                <span className="dropdown-item" href="#"><i className="ri-lock-unlock-line align-middle mr-1"></i> Lock screen</span>
                                 <div className="dropdown-divider"></div>
-                                <a className="dropdown-item text-danger" href="#"><i className="ri-shut-down-line align-middle mr-1 text-danger"></i> Logout</a>
+                                <span className="dropdown-item text-danger" href="#"><i className="ri-shut-down-line align-middle mr-1 text-danger"></i> Logout</span>
                             </div>
                         </div>
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import $ from "jquery"
 import "metismenu"
 import "../assets/css/custom.css"
@@ -30,62 +30,62 @@ const LeftSideBar = () => {
 
     return (
         <>
-            <div class="vertical-menu">
-                <div data-simplebar class="h-100">
+            <div className="vertical-menu">
+                <div data-simplebar className="h-100">
                     <div id="sidebar-menu">
-                        <ul class="metismenu list-unstyled" id="side-menu">
-                            <li class="menu-title">Menu</li>
+                        <ul className="metismenu list-unstyled" id="side-menu">
+                            <li className="menu-title">Menu</li>
                             <li>
-                                <a link="/" onClick={() => navigate("/")} class="waves-effect">
-                                    <i class="ri-dashboard-line"></i><span class="badge badge-pill badge-success float-right">3</span>
+                                <a link="/" onClick={(e) => { e.preventDefault(); navigate("/"); }} href="/#" className="waves-effect">
+                                    <i className="ri-dashboard-line"></i><span className="badge badge-pill badge-success float-right">3</span>
                                     <span>Trang điều khiển</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a class="has-arrow waves-effect cursor-pointer">
-                                    <i class="ri-store-2-line"></i>
+                                <a href="/#" onClick={(e) => e.preventDefault()} className="has-arrow waves-effect cursor-pointer">
+                                    <i className="fas fa-cubes"></i>
                                     <span>Danh mục</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li className='pointer cursor-pointer' onClick={() => navigate("/product-categories")}><a link="/product-categories">Loại sản phẩm</a></li>
-                                    <li className='cursor-pointer' onClick={() => navigate("/brand")}><a link="/brand">Nhãn hiệu</a></li>
-                                    <li className='cursor-pointer' onClick={() => navigate("/product")}><a link="/product">Sản phẩm</a></li>
+                                <ul className="sub-menu">
+                                    <li className='pointer cursor-pointer' onClick={() => navigate("/product-categories")}><a link="/product-categories" href="/#" onClick={(e) => e.preventDefault()} >Loại sản phẩm</a></li>
+                                    <li className='cursor-pointer' onClick={() => navigate("/brand")}><a link="/brand" href="/#">Nhãn hiệu</a></li>
+                                    <li className='cursor-pointer' onClick={() => navigate("/product")}><a link="/product" href="/#">Sản phẩm</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="apps-chat.html" class=" waves-effect">
-                                    <i class="ri-chat-1-line"></i>
+                                <a href="apps-chat.html" className=" waves-effect">
+                                    <i className="ri-chat-1-line"></i>
                                     <span>Chat</span>
                                 </a>
                             </li>
 
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-mail-send-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-mail-send-line"></i>
                                     <span>Email</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="email-inbox.html">Inbox</a></li>
                                     <li><a href="email-read.html">Read Email</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="apps-kanban-board.html" class=" waves-effect">
-                                    <i class="ri-artboard-2-line"></i>
+                                <a href="apps-kanban-board.html" className=" waves-effect">
+                                    <i className="ri-artboard-2-line"></i>
                                     <span>Kanban Board</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-layout-3-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-layout-3-line"></i>
                                     <span>Layouts</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="layouts-horizontal.html">Horizontal</a></li>
                                     <li><a href="layouts-light-sidebar.html">Light Sidebar</a></li>
                                     <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
@@ -95,14 +95,14 @@ const LeftSideBar = () => {
                                 </ul>
                             </li>
 
-                            <li class="menu-title">Pages</li>
+                            <li className="menu-title">Pages</li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-account-circle-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-account-circle-line"></i>
                                     <span>Authentication</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="auth-login.html">Login</a></li>
                                     <li><a href="auth-register.html">Register</a></li>
                                     <li><a href="auth-recoverpw.html">Recover Password</a></li>
@@ -111,11 +111,11 @@ const LeftSideBar = () => {
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-profile-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-profile-line"></i>
                                     <span>Utility</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="pages-starter.html">Starter Page</a></li>
                                     <li><a href="pages-maintenance.html">Maintenance</a></li>
                                     <li><a href="pages-comingsoon.html">Coming Soon</a></li>
@@ -127,14 +127,14 @@ const LeftSideBar = () => {
                                 </ul>
                             </li>
 
-                            <li class="menu-title">Components</li>
+                            <li className="menu-title">Components</li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-pencil-ruler-2-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-pencil-ruler-2-line"></i>
                                     <span>UI Elements</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="ui-alerts.html">Alerts</a></li>
                                     <li><a href="ui-buttons.html">Buttons</a></li>
                                     <li><a href="ui-cards.html">Cards</a></li>
@@ -159,12 +159,12 @@ const LeftSideBar = () => {
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="ri-eraser-fill"></i>
-                                    <span class="badge badge-pill badge-danger float-right">6</span>
+                                <a href="/#" className="waves-effect">
+                                    <i className="ri-eraser-fill"></i>
+                                    <span className="badge badge-pill badge-danger float-right">6</span>
                                     <span>Forms</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu" href="/#">
                                     <li><a href="form-elements.html">Elements</a></li>
                                     <li><a href="form-validation.html">Validation</a></li>
                                     <li><a href="form-advanced.html">Advanced Plugins</a></li>
@@ -177,11 +177,11 @@ const LeftSideBar = () => {
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-table-2"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-table-2"></i>
                                     <span>Tables</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="tables-basic.html">Basic Tables</a></li>
                                     <li><a href="tables-datatable.html">Data Tables</a></li>
                                     <li><a href="tables-responsive.html">Responsive Table</a></li>
@@ -190,11 +190,11 @@ const LeftSideBar = () => {
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-bar-chart-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-bar-chart-line"></i>
                                     <span>Charts</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="charts-apex.html">Apexcharts</a></li>
                                     <li><a href="charts-chartjs.html">Chartjs</a></li>
                                     <li><a href="charts-flot.html">Flot</a></li>
@@ -204,11 +204,11 @@ const LeftSideBar = () => {
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-brush-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-brush-line"></i>
                                     <span>Icons</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="icons-remix.html">Remix Icons</a></li>
                                     <li><a href="icons-materialdesign.html">Material Design</a></li>
                                     <li><a href="icons-dripicons.html">Dripicons</a></li>
@@ -217,27 +217,27 @@ const LeftSideBar = () => {
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-map-pin-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-map-pin-line"></i>
                                     <span>Maps</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
+                                <ul className="sub-menu">
                                     <li><a href="maps-google.html">Google Maps</a></li>
                                     <li><a href="maps-vector.html">Vector Maps</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-share-line"></i>
+                                <a href="/#" className="has-arrow waves-effect">
+                                    <i className="ri-share-line"></i>
                                     <span>Multi Level</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li><a href="javascript: void(0);">Level 1.1</a></li>
-                                    <li><a href="javascript: void(0);" class="has-arrow">Level 1.2</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="javascript: void(0);">Level 2.1</a></li>
-                                            <li><a href="javascript: void(0);">Level 2.2</a></li>
+                                <ul className="sub-menu">
+                                    <li><a href="/#">Level 1.1</a></li>
+                                    <li><a href="/#" className="has-arrow">Level 1.2</a>
+                                        <ul className="sub-menu">
+                                            <li><a href="/#">Level 2.1</a></li>
+                                            <li><a href="/#">Level 2.2</a></li>
                                         </ul>
                                     </li>
                                 </ul>
