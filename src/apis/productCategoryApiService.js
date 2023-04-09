@@ -1,8 +1,8 @@
 import axios from '../helpers/Apis/axiosCustomize';
 
-const GetProductCategoryManage = (request) => {
-    return axios.get('api/ProductCategory/Get', { params: request });
-}
+// const GetProductCategoryManage = (request) => {
+//     return axios.get('api/ProductCategory/Get', { params: request });
+// }
 
 const GetProductCategoryParentAndGroupSelectFilter = (name) => {
     return axios.get(`api/ProductCategory/GetProductCategoryParentAndGroupSelectFilter?name=${name}`);
@@ -23,9 +23,9 @@ const DeleteProductCategoryMulti = (ids) => {
 }
 
 // Laravel
-// const GetProductCategoryManage = (request) => {
-//     return axios.get('api/product_categories/get', { params: request });
-// }
+const GetProductCategoryManage = (request) => {
+    return axios.get('api/product-categories', { params: request });
+}
 
 const CreateProductCategoryManage = (request) => {
     return axios.post('api/product_categories/create', request);

@@ -48,6 +48,7 @@ const ProductCategoy = () => {
         } else {
             setSortState({ sortBy, orderBy: 'asc' });
         }
+        console.log("ok")
     };
 
     useEffect(() => {
@@ -188,6 +189,8 @@ const ProductCategoy = () => {
         // console.log(item?.id)
     }
 
+    console.log(productCategories)
+
     return (
         <>
             <div className="row">
@@ -251,7 +254,9 @@ const ProductCategoy = () => {
                                                 Tên loại sản phẩm
                                             </th>
                                             <th>Ảnh đại diện</th>
-                                            <th className='sorting' onClick={() => handleSort('displayOrder')}>Độ ưu tiên</th>
+                                            {/* Laravel */}
+                                            {/* <th className='sorting' onClick={() => handleSort('displayOrder')}>Độ ưu tiên</th> */}
+                                            <th className='sorting' onClick={() => handleSort('display_order')}>Độ ưu tiên</th>
                                             <th className='sorting' onClick={() => handleSort('published')}>Trạng thái</th>
                                             <th>Thao tác</th>
                                         </tr>
@@ -273,7 +278,7 @@ const ProductCategoy = () => {
                                                         <td className='d-flex justify-content-center'>
                                                             {
                                                                 item.image &&
-                                                                <img style={{ height: "36px" }} src={'https://localhost:7039' + item.image} alt='Product Category' />
+                                                                <img style={{ height: "36px" }} src={item.image} alt='Product Category' />
                                                             }
                                                         </td>
                                                         <td>
@@ -283,12 +288,12 @@ const ProductCategoy = () => {
                                                         </td>
                                                         <td>
                                                             {
-                                                                item.published && item.published === true &&
+                                                                item.published === true &&
                                                                 <span className="badge badge-success">Hoạt động</span>
                                                             }
                                                             {
-                                                                item.published && item.published === false &&
-                                                                <span className="badge badge-success">Không hoạt động</span>
+                                                                item.published === false &&
+                                                                <span className="badge badge-danger">Không hoạt động</span>
                                                             }
                                                         </td>
                                                         <td>
