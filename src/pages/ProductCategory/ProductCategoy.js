@@ -38,14 +38,6 @@ const ProductCategoy = () => {
         // setTotalPages(res.totalPages);
     }
 
-    // useEffect(() => {
-    //     const request = {
-    //         pageIndex: pageIndex,
-    //         pageSize: pageSize,
-    //     }
-    //     fetchProductCateogories(request);
-    // }, [pageIndex]);
-
     // Handle Sort
     const handleSort = (sortBy) => {
         if (sortState.sortBy === sortBy) {
@@ -247,7 +239,7 @@ const ProductCategoy = () => {
                                                         className="custom-control-input"
                                                         id="ordercheck"
                                                         onChange={(e) => handleSelectAllCheckbox(e)}
-                                                        checked={productCategories.map((item) => item.id).every((item) => selectedRecords.includes(item))}
+                                                        checked={selectedRecords.length > 0 ? productCategories.map((item) => item.id).every((item) => selectedRecords.includes(item)) : false}
                                                         ref={selectAllCheckboxRef} />
                                                     <label className="custom-control-label" htmlFor="ordercheck">&nbsp;</label>
                                                 </div>
