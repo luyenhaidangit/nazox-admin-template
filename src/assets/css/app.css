@@ -48,12 +48,12 @@ File: Main Css File
   font-display: swap;
   src: url("../fonts/inter-medium.woff2?v=3.13") format("woff2"), url("../fonts/inter-medium.woff?v=3.13") format("woff"); }
 
-@font-face {
+/* @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../fonts/inter-bold.woff2?v=3.13") format("woff2"), url("../fonts/iter-bold.woff?v=3.13") format("woff"); }
+  src: url("../fonts/inter-bold.woff2?v=3.13") format("woff2"), url("../fonts/inter-bold.woff?v=3.13") format("woff"); } */
 
 #page-topbar {
   position: fixed;

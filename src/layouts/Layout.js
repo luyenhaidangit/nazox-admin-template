@@ -4,6 +4,10 @@ import { Outlet } from 'react-router-dom'
 // import Footer from './Footer'
 import { Header } from './Header'
 import LeftSideBar from './LeftSideBar'
+import "../assets/css/bootstrap.min.css"
+import "../assets/css/icons.min.css"
+import "../assets/css/app.css"
+import "../assets/css/custom.css"
 // import RightSideBar from './RightSideBar'
 // import $ from 'jquery';
 // import MetisMenu from '@metismenu/react'
@@ -14,12 +18,6 @@ import LeftSideBar from './LeftSideBar'
 const Layout = () => {
     return (
         <>
-
-            <link href="../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-            <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-            <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-            <link href="../assets/css/custom.css" rel="stylesheet" type="text/css" />
-
             <div id="layout-wrapper">
 
                 <Header />
