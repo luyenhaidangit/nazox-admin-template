@@ -278,7 +278,7 @@ const ProductCategoy = () => {
                                                         <td className='d-flex justify-content-center'>
                                                             {
                                                                 item.image &&
-                                                                <img style={{ height: "36px" }} src={item.image} alt='Product Category' />
+                                                                <img style={{ height: "36px" }} src={"https://localhost:7039" + item.image} alt='Product Category' />
                                                             }
                                                         </td>
                                                         <td>

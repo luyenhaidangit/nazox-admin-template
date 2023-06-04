@@ -8,9 +8,9 @@ import axios from 'axios';
 // })
 
 const instance = axios.create({
-    // baseURL: 'https://localhost:7039'
+    baseURL: 'https://localhost:7039'
     // Laravel
-    baseURL: 'http://127.0.0.1:8000',
+    // baseURL: 'http://127.0.0.1:8000',
 });
 
 // Add a request interceptor

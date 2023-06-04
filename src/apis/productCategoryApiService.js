@@ -24,7 +24,7 @@ const DeleteProductCategoryMulti = (ids) => {
 
 // Laravel
 const GetProductCategoryManage = (request) => {
-    return axios.get('api/product-categories', { params: request });
+    return axios.get('api/ProductCategory/Get', { params: request });
 }
 
 const CreateProductCategoryManage = (request) => {
